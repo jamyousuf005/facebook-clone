@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+html, body {
+  @apply bg-gray-100;
+}
+
+ /* CSS for Posts Section */
+  .posts-container {
+    height: auto;
+    overflow-y: auto;
+  }
+  @import "tailwindcss";
+
+  html, body {
+    @apply bg-gray-100;
+  }
+
+  
+  .sidebar-container {
+    position: relative;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100%; /* Ensure the sidebar stretches full height */
+  }
+  
+  /* Custom Scrollbar (Webkit Browsers) */
+  .sidebar-container::-webkit-scrollbar {
+    width: 0px; /* Hide the scrollbar initially */
+    transition: width 0.3s ease; /* Smooth transition for showing the scrollbar */
+  }
+  
+  .sidebar-container:hover::-webkit-scrollbar {
+    width: 8px; /* Show the scrollbar when hovering */
+  }
+  
+  .sidebar-container::-webkit-scrollbar-track {
+    background: transparent; /* Transparent track */
+  }
+  
+  .sidebar-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .sidebar-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker thumb on hover */
+  }
+  
+  /* Firefox Scrollbar Styling */
+  .sidebar-container {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: transparent transparent; /* Hide thumb and track initially */
+  }
+  
+  .sidebar-container:hover {
+    scrollbar-color: #888 transparent; /* Show thumb color when hovering */
+  }
+  
+  /* Additional Sidebar Styling */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 700px; /* Fixed height for sidebar */
+    overflow-y: auto; /* Allow the sidebar to scroll independently */
+  }
+ 
+  /* CSS for Right Sidebar scrollbar - matching exactly with sidebar */
+.right-sidebar-container {
+  position: relative;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100%; /* Ensure the sidebar stretches full height */
+}
+
+/* Custom Scrollbar (Webkit Browsers) */
+.right-sidebar-container::-webkit-scrollbar {
+  width: 0px; /* Hide the scrollbar initially */
+  transition: width 0.3s ease; /* Smooth transition for showing the scrollbar */
+}
+
+.right-sidebar-container:hover::-webkit-scrollbar {
+  width: 8px; /* Show the scrollbar when hovering */
+}
+
+.right-sidebar-container::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track */
+}
+
+.right-sidebar-container::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.right-sidebar-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker thumb on hover */
+}
+
+/* Firefox Scrollbar Styling */
+.right-sidebar-container {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: transparent transparent; /* Hide thumb and track initially */
+}
+
+.right-sidebar-container:hover {
+  scrollbar-color: #888 transparent; /* Show thumb color when hovering */
+}
+
+/* Additional Right Sidebar Styling to match Sidebar */
+.right-sidebar {
+  position: sticky;
+  top: 0;
+  height: 700px; /* Fixed height for sidebar - matches sidebar height */
+  overflow-y: auto; /* Allow the sidebar to scroll independently */
+}
