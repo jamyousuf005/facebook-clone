@@ -23,7 +23,8 @@ const LoginCard = () => {
         await signInWithEmailAndPassword(auth,email,password)
         const toastId = toast.success("User Logged in Successfully",{
             position:"top-center",
-            autoClose: 2000,
+            autoClose: 1000,
+            
             onClose: () => {
                 navigate("/HomePosts")
             }
@@ -31,7 +32,7 @@ const LoginCard = () => {
     }catch(error){
        toast.error(error.message,{
         position:"bottom-center",
-        autoClose: 2000
+        autoClose: 1000
        })
     }
 

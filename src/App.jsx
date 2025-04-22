@@ -15,15 +15,19 @@ import RegisterCard from './Components/RegisterCard';
 import { ToastContainer } from 'react-toastify';
 
 const App = () => {
-  const { user } = useContext(AuthContext);
+  const { user,loading } = useContext(AuthContext);
 
+  if (loading) {
+    return <div className="text-center mt-10 text-xl">Loading...</div>; // or a spinner
+  }
+  
   return (
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={user ? <Navigate to="/Login" /> : <Navigate to="/Login" />} />
-        <Route path="/Login" element= {<Login />}/>
-        <Route path="/RegisterCard" element={user ? <Navigate to="/Login" /> : <RegisterCard />} />
+        <Route path="/" element={user ? <Navigate to="/HomePosts" /> : <Navigate to="/Login" />} />
+        <Route path="/Login" element= {user ? <Navigate to="/HomePosts" /> : <Login />}/>
+        <Route path="/RegisterCard" element={user ? <Navigate to="/HomePosts" /> : <RegisterCard />} />
         
         <Route path="/HomePosts" element={
           user ? (
