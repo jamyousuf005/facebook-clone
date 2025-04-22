@@ -21,16 +21,17 @@ const LoginCard = () => {
 
     try{
         await signInWithEmailAndPassword(auth,email,password)
-        toast.success("User Logged in Successfully",{
+        const toastId = toast.success("User Logged in Successfully",{
             position:"top-center",
-            autoClose:2000
+            autoClose: 1000,
+            onClose: () => {
+                navigate("/HomePosts")
+            }
         })
-        navigate("/HomePosts")
     }catch(error){
        toast.error(error.message,{
         position:"bottom-center",
-        autoClose:2000
-
+        autoClose: 2000
        })
     }
 
