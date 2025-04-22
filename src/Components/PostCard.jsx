@@ -87,7 +87,7 @@ const PostCard = () => {
           <hr />
         </div>
           
-        <div className='flex justify-around gap-1 text-gray-600 text-xl mt-2'>
+        <div className='flex justify-around gap-1 text-gray-600 text-lg md:text-xl mt-2'>
           <div onClick={() => handleInterfaceClick(true)} className='flex items-center gap-2 p-2 hover:bg-gray-300 hover:rounded cursor-pointer'>  
             <FaVideo className='text-red-500' />
             <span className='text-md'>Video</span>

@@ -107,7 +107,7 @@ const NavBar = () => {
                 </div>
 
             
-                <div className='flex gap-8 md:gap-20 text-3xl p-2 md:text-3xl  text-gray-500'>
+                <div className='flex gap-8 md:gap-20 text-2xl p-2 md:text-3xl  text-gray-500'>
                    
                <Link  
                className= {`pb-1 ${isActive("/HomePosts")  
