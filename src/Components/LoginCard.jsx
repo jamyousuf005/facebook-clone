@@ -89,7 +89,7 @@ const LoginCard = () => {
                     <hr className=' border-gray-400' />
 
                     <div className='flex justify-center mt-4'>
-                        <button onClick={()=>navigate('/RegisterCard')} className='bg-green-600  
+                        <button type="button" onClick={()=>navigate('/RegisterCard')} className='bg-green-600  
                         p-2 rounded text-white font-bold' >
                             Create new Account</button>
                     </div>
