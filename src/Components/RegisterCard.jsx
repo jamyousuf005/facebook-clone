@@ -14,33 +14,40 @@ export default function FacebookSignup() {
    const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-  const handleSubmit= async(e)=>{
-            e.preventDefault()
-            try{
-              await createUserWithEmailAndPassword(auth,email,password)
-              const user = auth.currentUser
-              console.log(user)
-              if(user){
-                await setDoc(doc(db,"users",user.uid),{
-                    email:user.email,
-                    firstName : fname,
-                    lastName : lname
-                })
-              }
-
-              toast.success("User Registered Successfully",{
-                position:"top-center",
-                autoClose:2000
-
-              })
-            }catch(error){
-              console.log(error.message)
-              toast.error(error.message,{
-                position:"bottom-center",
-                autoClose:2000
-
-              })
-            }
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    try {
+      // Create the user account
+      await createUserWithEmailAndPassword(auth, email, password)
+      const user = auth.currentUser
+      
+      if(user) {
+        // Save user data to Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          firstName: fname,
+          lastName: lname
+        })
+        
+        // Sign out completely before showing toast
+        await auth.signOut()
+        
+        // Show success message and navigate immediately
+        toast.success("User Registered Successfully", {
+          position: "top-center",
+          autoClose: 2000
+        })
+        
+        // Navigate immediately, don't wait for toast
+        navigate('/Login')
+      }
+    } catch(error) {
+      console.log(error.message)
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 2000
+      })
+    }
   }
 
   return (
@@ -108,7 +115,8 @@ export default function FacebookSignup() {
           </div>
           <div className="flex justify-center">
             <button
-              type="submit"
+             type='submit'
+           
               className="bg-green-600 text-white py-2 px-12 rounded-md text-xl font-bold hover:bg-green-700"
             >
               Sign Up

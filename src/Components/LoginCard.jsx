@@ -23,7 +23,7 @@ const LoginCard = () => {
         await signInWithEmailAndPassword(auth,email,password)
         const toastId = toast.success("User Logged in Successfully",{
             position:"top-center",
-            autoClose: 1000,
+            autoClose: 2000,
             onClose: () => {
                 navigate("/HomePosts")
             }
