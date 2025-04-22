@@ -8,11 +8,11 @@ const RightSideBar = () => {
     
   return (
     <div className="right-sidebar">
-      <div className="right-sidebar-container pl-18 p-4 flex flex-col gap-4 h-screen sticky top-0">
+      <div className="right-sidebar-container  pl-18 p-4 flex flex-col gap-4 h-screen sticky top-0">
         {/* Sponsored Section */}
-        <div className="mb-2">
+        <div className="mb-2 ">
           <h3 className="text-lg font-semibold text-gray-500 mb-2">Sponsored</h3>
-          <div className="bg-white rounded-lg shadow hover:bg-gray-100 cursor-pointer p-2">
+          <div className="bg-white rounded-lg shadow overflow-hidden hover:bg-gray-100 cursor-pointer p-2">
             <div className="flex gap-3">
               <img src={earphone} alt="Ad" className="rounded-lg w-20 h-20 object-cover" />
               <div>

@@ -34,7 +34,8 @@ const NavBar = () => {
 
     return (
         <div className='w-full relative'>
-            <nav className={searchVisible ?  `bg-white relative lg:hidden items-center text-2xl justify-between
+            <nav className={searchVisible ?  `bg-white relative lg:hidden items-center 
+            text-2xl justify-between
              p-0` : `p-4 bg-white relative lg:hidden items-center text-2xl justify-between`}>
 
                 {searchVisible ? (
@@ -158,10 +159,11 @@ const NavBar = () => {
 
 
                 <div className='flex gap-5 text-4xl pr-2 items-center '>
-                    <MdMenu className='bg-gray-300  rounded-full p-1 hidden lg:block' />
-
+                  <Link to="/Settings"> <MdMenu className='bg-gray-300  rounded-full p-1 hidden lg:block' />
+                   </Link>
                     <FaFacebookMessenger className='bg-gray-300 rounded-full p-2 hidden lg:block  ' />
-                    <IoNotifications className='bg-gray-300 rounded-full p-2 hidden lg:block ' />
+                  <Link to="/Notifications">  <IoNotifications className='bg-gray-300 rounded-full p-2 hidden lg:block ' />
+                    </Link>
                     <div className=' bg-gray-300 rounded-full hidden lg:block w-[40px] h-[40px] overflow-hidden  '>
                         <img className='w-full h-full object-cover' src={dp} alt="" />
                     </div>

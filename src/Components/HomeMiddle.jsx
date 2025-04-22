@@ -5,8 +5,8 @@ import Posts from './Posts'
 
 const HomeMiddle = () => {
   return (
-    <div className='pl-10 pr-10 pt-5 bg-gray-100 flex flex-col'>
-
+    <div className=' lg:pl-8 lg:pr-8 lg:pt-5 bg-gray-100 flex justify-center items-center
+    flex-col w-[100%] overflow-hidden'>
         <PostCard/>
         <Stories/> 
         <Posts/>

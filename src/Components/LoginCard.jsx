@@ -1,39 +1,47 @@
 import { useContext, useState } from "react"
 import { AuthContext} from "./AuthContext"
-import { useNavigate } from "react-router"
-
-
+import {  useNavigate } from "react-router-dom"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { toast } from "react-toastify"
+import { auth } from "./Firebase";
 
 
 const LoginCard = () => {
     const navigate = useNavigate()
 
- const {login}=useContext(AuthContext)
+//  const {login}=useContext(AuthContext)
 
 
-   const [formData,setFormData]=useState({
-    email:"",
-    password:""
-   })
+   const [email, setEmail] = useState("")
+   const [password,setPassword]=useState("")
 
-    const handleChange=(e)=>{
-            const {name,value} = e.target;
-             setFormData((prevData)=>({
-                ...prevData,
-                [name]:value,
-             }))   
-    }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-    if (login(formData.email, formData.password)) {
-      console.log("Login successful!");
-      setFormData({password:""})
-       navigate("/HomePosts")
-    } else {
-      console.log("Login failed!");
-      };
+    try{
+        await signInWithEmailAndPassword(auth,email,password)
+        toast.success("User Logged in Successfully",{
+            position:"top-center",
+            autoClose:2000
+        })
+        navigate("/HomePosts")
+    }catch(error){
+       toast.error(error.message,{
+        position:"bottom-center",
+        autoClose:2000
+
+       })
+    }
+
+
+    // if (login(formData.email, formData.password)) {
+    //   console.log("Login successful!");
+    //   setFormData({password:""})
+    //    navigate("/HomePosts")
+    // } else {
+    //   console.log("Login failed!");
+    //   };
     }
 
 
@@ -48,8 +56,8 @@ const LoginCard = () => {
                     placeholder='Email address or phone number'
                     type="text"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
                     autoComplete="email"
                      />
 
@@ -58,20 +66,19 @@ const LoginCard = () => {
                     placeholder='Password'
                     type="password"
                     name="password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     autoComplete="current-password"
                     />
 
-                  
-
                 <button type='submit' 
-                className='bg-blue-600 cursor-pointer w-full p-2 rounded text-white font-bold'>
+                className='bg-blue-600 cursor-pointer w-full p-2 rounded
+                 text-white font-bold'>
                     Log in</button>
                
                  
-            
-                <div className='cursor-pointer hover:unerline text-blue-600 text-sm flex justify-center'>
+                <div className='cursor-pointer hover:unerline text-blue-600 
+                text-sm flex justify-center'>
                     <p>Forgotten Password</p>
 
                 </div>
@@ -81,7 +88,8 @@ const LoginCard = () => {
                     <hr className=' border-gray-400' />
 
                     <div className='flex justify-center mt-4'>
-                        <button className='bg-green-600  p-2 rounded text-white font-bold' >
+                        <button onClick={()=>navigate('/RegisterCard')} className='bg-green-600  
+                        p-2 rounded text-white font-bold' >
                             Create new Account</button>
                     </div>
 

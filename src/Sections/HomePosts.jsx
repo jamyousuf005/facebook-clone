@@ -20,7 +20,7 @@ const HomePosts = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-100 ">
       {/* Fixed NavBar at the top */}
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow">
         <NavBar />
@@ -43,12 +43,12 @@ const HomePosts = () => {
         </div>
 
         {/* Middle Content - Scrollable */}
-        <div className="w-[full] block lg:w-[40%]   bg-gray-100 min-h-screen">
+        <div className="w-[100%] lg:w-[50%] bg-gray-100 min-h-screen">
           <HomeMiddle />
         </div>
 
         {/* Right Sidebar - Fixed */}
-        <div className="hidden lg:block w-[30%] bg-gray-100 ">
+        <div className="hidden lg:block  lg:w-[30%] bg-gray-100 ">
           <div className="sticky top-16 h-[calc(100vh-64px)]">
             <div className="p-4">
               <RightSideBar />

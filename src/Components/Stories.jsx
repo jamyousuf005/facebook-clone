@@ -24,10 +24,11 @@ export default function Stories() {
   };
 
   return (
-    <div className="relative w-[500px] lg:w-full p-4">
+    <div className="relative w-full md:w-[80%] p-5 md:p-4 ">
       {/* Left Scroll Button */}
       <button
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 hidden md:flex"
+        className="absolute left-0 top-1/2 -translate-y-1/2
+         bg-white p-2 rounded-full shadow-md z-10 md:flex"
         onClick={() => scroll("left")}
       >
         <FaChevronLeft className="text-gray-600 text-lg" />
@@ -62,7 +63,8 @@ export default function Stories() {
 
       {/* Right Scroll Button */}
       <button
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 hidden md:flex"
+        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 
+        rounded-full shadow-md z-10  md:flex"
         onClick={() => scroll("right")}
       >
         <FaChevronRight className="text-gray-600 text-lg" />
