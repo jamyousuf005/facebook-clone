@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../Components/DataContext'
 import SearchBarComp from '../Components/SearchBarComp'
-import Sidebar from '../Components/SideBar'
+import SideBar from '../Components/SideBar'
 import NavBar from '../Components/NavBar'
 import { FaRegLaughBeam } from "react-icons/fa";
 import { BiLike } from "react-icons/bi";
@@ -39,7 +39,7 @@ const VideoPosts = () => {
             }}
             style={{ passive: true }}
           >
-            <Sidebar /> 
+            <SideBar />
           </div>
         </div>
 
@@ -58,7 +58,7 @@ const VideoPosts = () => {
                 {/* Post Header */}
                 <div className="p-4 flex items-center">
                   <img
-                    src={matchingStory ? matchingStory.img : post.img}
+                    src={matchingStory ? matchingStory.profileImg : post.img}
                     alt={post.name}
                     className="w-10 h-10 rounded-full mr-3"
                   />

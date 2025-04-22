@@ -36,7 +36,7 @@ const Posts = () => {
             <div className='flex items-center p-2'>
               {story ? (
                 <>
-                  <img className='w-[50px] h-[50px] rounded-full' src={story.img} alt={story.name} />
+                  <img className='w-[50px] h-[50px] rounded-full' src={story.profileImg} alt={story.name} />
                   <span className='ml-3 font-semibold'>{story.name}</span>
                 </>
               ) : (

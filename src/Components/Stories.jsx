@@ -48,10 +48,10 @@ export default function Stories() {
         {/* Other Stories */}
         {stories.map((story) => (
           <div key={story.id} className="relative w-24 h-40 rounded-xl overflow-hidden cursor-pointer shrink-0">
-            <img src={story.img} alt={story.name} className="w-full h-full object-cover brightness-75" />
+            <img src={story.profileImg} alt={story.name} className="w-full h-full object-cover brightness-75" />
             <div className="absolute top-2 left-2 w-8 h-8 rounded-full border-2 border-blue-500 overflow-hidden">
-              {/* Random Avatar for each user */}
               <img
+                src={story.profileImg}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />

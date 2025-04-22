@@ -62,7 +62,7 @@ const RightSideBar = () => {
                 </div>
                 <div className='flex gap-1'>
                   <img className='w-[50px] h-[50px] rounded-full'
-                  src={list.img} alt={list.img} />
+                  src={list.profileImg} alt={list.img} />
                   <p className="font-medium">{list.name}</p>
                 </div>
               </div>

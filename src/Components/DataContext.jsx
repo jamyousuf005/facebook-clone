@@ -9,6 +9,16 @@ import post6 from "../../Assets/Posts/post6.jpg";
 import post7 from "../../Assets/Posts/post7.jpg";
 import post8 from "../../Assets/Posts/post8.jpg";
 
+
+import profile1 from "../../Assets/ameen.jpeg"
+import profile2 from "../../Assets/kohli.jpg"
+import profile3 from "../../Assets/uzair.avif"
+import profile4 from "../../Assets/ikram.jpg"
+import profile5 from "../../Assets/ali muhammad.avif"
+import profile6 from "../../Assets/Gazanfar.jpg"
+import profile7 from "../../Assets/ameen.jpeg"
+import profile8 from "../../Assets/ameen.jpeg"
+
 export const DataContext = createContext()
 
 export const DataProvider = ({ children }) => {
@@ -64,14 +74,14 @@ export const DataProvider = ({ children }) => {
     ])
 
     const stories = [
-        { id: 1, name: "Ameen", img: "../../Assets/ameen.jpeg" },
-        { id: 2, name: "Virat Kohli", img: "../../Assets/kohli.jpg" },
-        { id: 3, name: "Uzair", img: "../../Assets/uzair.avif" },
-        { id: 4, name: "Ikram", img: "../../Assets/ikram.jpg" },
-        { id: 5, name: "Ali Muhammad", img: "../../Assets/ali muhammad.avif" },
-        { id: 6, name: "Gazanfar", img: "../../Assets/Gazanfar.jpg" },
-        { id: 7, name: "Grace", img: "../../Assets/Posts/2ndlast.jpg" },
-        { id: 8, name: "Harry", img: "../../Assets/Posts/last.webp" },
+        { id: 1, name: "Ameen", profileImg: profile1 },
+        { id: 2, name: "Virat Kohli", profileImg: profile2 },
+        { id: 3, name: "Uzair", profileImg: profile3 },
+        { id: 4, name: "Ikram", profileImg: profile4  },
+        { id: 5, name: "Ali Muhammad", profileImg: profile5 },
+        { id: 6, name: "Gazanfar", profileImg: profile6 },
+        { id: 7, name: "Grace", profileImg: profile7 },
+        { id: 8, name: "Harry", profileImg: profile8 },
     ];
 
 
