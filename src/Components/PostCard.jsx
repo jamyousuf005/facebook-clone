@@ -5,15 +5,35 @@ import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { IoHappyOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { DataContext } from './DataContext';
+import { AuthContext } from './AuthContext';
 
 const PostCard = () => {
   const {hiddenFileInput, handleUploadChange, handleClick, uploadPhoto, addNewPost, friendsList} = useContext(DataContext)
+  const { userDetails } = useContext(AuthContext);
   const [clicked, setClicked] = useState(false)
   const [previewImage, setPreviewImage] = useState(null)
   const [previewVideo, setPreviewVideo] = useState(null)
   const [postText, setPostText] = useState('')
   const [isVideo, setIsVideo] = useState(false)
   const [youtubeUrl, setYoutubeUrl] = useState('')
+
+  // Get the full name from user details
+  const getFullName = () => {
+    if (userDetails) {
+      return `${userDetails.firstName || ""} ${userDetails.lastName || ""}`.trim();
+    }
+    return "You"; // Default fallback
+  };
+
+  // Generate initials for avatar fallback
+  const getInitials = () => {
+    if (userDetails) {
+      const firstName = userDetails.firstName || "";
+      const lastName = userDetails.lastName || "";
+      return (firstName.charAt(0) +" "+ lastName.charAt(0)).toUpperCase();
+    }
+    return "FB"; // Default fallback
+  };
 
   const handleInterfaceClick = (isVideoUpload = false) => {
     setClicked(!clicked)
@@ -49,7 +69,7 @@ const PostCard = () => {
       // Create a new post object
       const newPost = {
         id: Date.now().toString(),
-        name: 'You',
+        name: getFullName(), // Use the actual user's name
         img: previewImage || dp, // Use default image for video posts
         videoUrl: youtubeUrl || previewVideo || null,
         text: postText || (isVideo ? (youtubeUrl ? 'Shared a YouTube video' : 'Shared a video') : 'Shared a photo')
@@ -67,16 +87,28 @@ const PostCard = () => {
     }
   }
 
+  // Avatar component to display user profile
+  const UserAvatar = () => {
+    if (userDetails) {
+      return (
+        <div className='w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg'>
+          {getInitials()}
+        </div>
+      );
+    }
+    return " "
+  };
+
   return (
     <div className='w-full bg-white p-3 rounded-lg md:w-[80%] overflow-hidden'>
       <div className='relative'>
         <div className='flex gap-3 w-full'>
           <div className='w-12 h-10'>
-            <img className='w-12 h-10 rounded-full object-cover' src={dp} alt="" />
+            <UserAvatar />
           </div>
           <input 
             type="text" 
-            placeholder='whats on your mind?'
+            placeholder={`What's on your mind, ${userDetails?.firstName || 'there'}?`}
             className='bg-gray-200 rounded-3xl border-none w-full p-2'
             value={postText}
             onChange={(e) => setPostText(e.target.value)}

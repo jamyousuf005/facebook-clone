@@ -1,13 +1,29 @@
 import { useState, useEffect, createContext } from "react";
-import { auth } from './Firebase';
+import { auth, db } from './Firebase';
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Function to fetch user data from Firestore
+  const fetchUserData = async (uid) => {
+    try {
+      const userDoc = await getDoc(doc(db, "users", uid));
+      if (userDoc.exists()) {
+        setUserDetails(userDoc.data());
+      } else {
+        console.log("No user details found");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -21,6 +37,14 @@ export const AuthProvider = ({ children }) => {
       }
       
       setUser(currentUser);
+      
+      // If there's a user, fetch their details
+      if (currentUser) {
+        fetchUserData(currentUser.uid);
+      } else {
+        setUserDetails(null);
+      }
+      
       setLoading(false);
     });
     
@@ -29,8 +53,9 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      setLoading(true); // Set loading to true during logout
+      setLoading(true);
       await auth.signOut();
+      setUserDetails(null);
       navigate('/Login');
     } catch (error) {
       console.log(error.message);
@@ -40,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, logout, loading }}>
+    <AuthContext.Provider value={{ user, userDetails, logout, loading, fetchUserData }}>
       {children}
     </AuthContext.Provider>
   );

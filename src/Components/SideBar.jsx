@@ -1,41 +1,63 @@
-import React, { useState } from "react";
-import { Users, MessageCircle, ShoppingBag, Clock, Gamepad, Calendar, Home, Video, Bookmark, CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
-import profilePic from "../../Assets/dp.jpg"; // Your profile image
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
+import { Users, MessageCircle, ShoppingBag, Clock, Gamepad, Calendar, Video, Bookmark, CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
+import profilePic from "../../Assets/dp.jpg"; // Default profile image
 import { AuthContext } from "./AuthContext";
-
-const menuItems = [
-  { id: 0, icon: <img src={profilePic} alt="Profile" 
-  className="w-10 h-10 rounded-full object-cover" />,
-   label: "Jam Yousuf" },
-  { id: 1, icon: <Users />, label: "Friends" },
-  { id: 2, icon: <Users />, label: "Groups" },
-  { id: 3, icon: <MessageCircle />, label: "Messenger" },
-  { id: 4, icon: <Video />, label: "Watch" },
-  { id: 5, icon: <ShoppingBag />, label: "Marketplace" },
-  { id: 6, icon: <Bookmark />, label: "Saved" },
-  { id: 7, icon: <Clock />, label: "Memories" },
-  { id: 8, icon: <Calendar />, label: "Events" },
-  { id: 9, icon: <CalendarDays />, label: "Calendar" },
-  { id: 10, icon: <Gamepad />, label: "Gaming" }
-];
-
-const extraItems = [
-  { id: 11, icon: <Video />, label: "Reels" },
-  { id: 12, icon: <Clock />, label: "Recent Activity" },
-  { id: 13, icon: <Gamepad />, label: "Gaming Videos" },
-  { id: 14, icon: <ShoppingBag />, label: "Fundraisers" },
-  { id: 15, icon: <MessageCircle />, label: "Messenger" }
-];
 
 const Sidebar = () => {
   const [showMore, setShowMore] = useState(false);
-  const {userDetails,fetchUserData}=useContext(AuthContext)
+  const { user, userDetails } = useContext(AuthContext);
 
+  // Generate initials as fallback if no profile pic
+  const getInitials = () => {
+    if (userDetails) {
+      const firstName = userDetails.firstName || "";
+      const lastName = userDetails.lastName || "";
+      return (firstName.charAt(0) +" "+lastName.charAt(0)).toUpperCase();
+    }
+    return "FB"; // Default fallback
+  };
 
-  
+  // Get the full name from user details
+  const getFullName = () => {
+    if (userDetails) {
+      return `${userDetails.firstName || ""} ${userDetails.lastName || ""}`.trim();
+    }
+    return "Facebook User"; // Default fallback
+  };
+
+  // Create dynamic menu items with user profile
+  const menuItems = [
+    { 
+      id: 0, 
+      icon: 
+        <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg">
+          {getInitials()}
+        </div>
+      , 
+      label: getFullName()
+    },
+    { id: 1, icon: <Users />, label: "Friends" },
+    { id: 2, icon: <Users />, label: "Groups" },
+    { id: 3, icon: <MessageCircle />, label: "Messenger" },
+    { id: 4, icon: <Video />, label: "Watch" },
+    { id: 5, icon: <ShoppingBag />, label: "Marketplace" },
+    { id: 6, icon: <Bookmark />, label: "Saved" },
+    { id: 7, icon: <Clock />, label: "Memories" },
+    { id: 8, icon: <Calendar />, label: "Events" },
+    { id: 9, icon: <CalendarDays />, label: "Calendar" },
+    { id: 10, icon: <Gamepad />, label: "Gaming" }
+  ];
+
+  const extraItems = [
+    { id: 11, icon: <Video />, label: "Reels" },
+    { id: 12, icon: <Clock />, label: "Recent Activity" },
+    { id: 13, icon: <Gamepad />, label: "Gaming Videos" },
+    { id: 14, icon: <ShoppingBag />, label: "Fundraisers" },
+    { id: 15, icon: <MessageCircle />, label: "Messenger" }
+  ];
+
   return (
-    <div className="overflow-y-auto h-full"> {/* Ensures scrolling works */}
+    <div className="overflow-y-auto h-full">
       <div className="sidebar-container h-full w-[80%] p-3 pr-1">
         <ul className="space-y-2">
           {menuItems.map((item) => (

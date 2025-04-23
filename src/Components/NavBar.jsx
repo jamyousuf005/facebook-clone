@@ -14,6 +14,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import dp from '../../Assets/dp.jpg'
 import { DataContext } from './DataContext';
 import { Link, useAsyncError, useLocation } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 
 
@@ -31,6 +32,18 @@ const NavBar = () => {
       const location = useLocation()
 
       const isActive = (path) => location.pathname === path  
+
+       const { userDetails } = useContext(AuthContext);
+    
+      // Generate initials for avatar fallback
+      const getInitials = () => {
+        if (userDetails) {
+          const firstName = userDetails.firstName || "";
+          const lastName = userDetails.lastName || "";
+          return (firstName.charAt(0) +" "+lastName.charAt(0)).toUpperCase();
+        }
+        return "FB"; // Default fallback
+      };
 
     return (
         <div className='w-full relative'>
@@ -165,8 +178,8 @@ const NavBar = () => {
                     <FaFacebookMessenger className='bg-gray-300 rounded-full p-2 hidden lg:block  ' />
                   <Link to="/Notifications">  <IoNotifications className='bg-gray-300 rounded-full p-2 hidden lg:block ' />
                     </Link>
-                    <div className=' bg-gray-300 rounded-full hidden lg:block w-[40px] h-[40px] overflow-hidden  '>
-                        <img className='w-full h-full object-cover' src={dp} alt="" />
+                    <div className='  hidden  mr-2 w-10 h-10 rounded-full bg-blue-500  lg:flex items-center justify-center text-white text-lg'>
+                        {getInitials()}
                     </div>
 
                 </div>

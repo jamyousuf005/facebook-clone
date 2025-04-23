@@ -5,6 +5,7 @@ import { BiLike } from "react-icons/bi";
 import { FaComment } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import dp from '../../Assets/dp.jpg';
+import { AuthContext } from './AuthContext';
 
 const Posts = () => {
   const { 
@@ -17,6 +18,24 @@ const Posts = () => {
     handleKeyPress
   } = useContext(DataContext);
   
+   const { userDetails } = useContext(AuthContext);
+ 
+   const getFullName = () => {
+    if (userDetails) {
+      return `${userDetails.firstName || ""} ${userDetails.lastName || ""}`.trim();
+    }
+    return "You"; // Default fallback
+  };
+
+  // Generate initials for avatar fallback
+  const getInitials = () => {
+    if (userDetails) {
+      const firstName = userDetails.firstName || "";
+      const lastName = userDetails.lastName || "";
+      return (firstName.charAt(0) +" "+ lastName.charAt(0)).toUpperCase();
+    }
+    return "FB"; // Default fallback
+  };
 
   return (
     // Added mt-2 or mt-4 class to adjust the top margin and reduce the gap
@@ -106,15 +125,11 @@ const Posts = () => {
                   <div className='mb-4'>
                     {postData.comments.map(comment => (
                       <div key={comment.id} className='flex mb-3'>
-                        <div className='mr-2'> 
-                          <img 
-                            className='w-8 h-8 rounded-full object-cover' 
-                            src={dp} 
-                            alt="User" 
-                          />
+                        <div className='mr-2 w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg'> 
+                         {getInitials()}
                         </div>
                         <div className='bg-gray-100 rounded-lg p-2 max-w-[85%]'>
-                          <div className='font-semibold text-sm'>{comment.user}</div>
+                          <div className='font-semibold text-sm'>{getFullName()}</div>
                           <div className='text-sm'>{comment.text}</div>
                           <div className='text-xs text-gray-500 mt-1'>
                             {new Date(comment.timestamp).toLocaleString()}
@@ -127,12 +142,8 @@ const Posts = () => {
                 
                 {/* Comment input */}
                 <div className='flex w-full gap-2'>
-                  <div> 
-                    <img 
-                      className='w-10 h-10 rounded-full object-cover' 
-                      src={dp} 
-                      alt="User" 
-                    />
+                  <div className='mr-2 w-11 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg' > 
+                      {getInitials()}
                   </div>
                   <div className='w-full'>
                     <input 
