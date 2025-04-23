@@ -14,21 +14,31 @@ import Settings from './Sections/Settings';
 import RegisterCard from './Components/RegisterCard';
 import { ToastContainer } from 'react-toastify';
 
-const App = () => {
-  const { user,loading } = useContext(AuthContext);
+// Optional loading component
+const LoadingScreen = () => (
+  <div className="flex justify-center items-center min-h-screen">
+    <div className="spinner-border text-primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>
+);
 
+const App = () => {
+  const { user, loading } = useContext(AuthContext);
+
+  // Show loading screen while authentication state is being determined
   if (loading) {
-    return <div className="text-center mt-10 text-xl">Loading...</div>; // or a spinner
+    return <LoadingScreen />;
   }
-  
+
   return (
     <>
       <ToastContainer />
       <Routes>
         <Route path="/" element={user ? <Navigate to="/HomePosts" /> : <Navigate to="/Login" />} />
-        <Route path="/Login" element= {user ? <Navigate to="/HomePosts" /> : <Login />}/>
+        <Route path="/Login" element={user ? <Navigate to="/HomePosts" /> : <Login />} />
         <Route path="/RegisterCard" element={user ? <Navigate to="/HomePosts" /> : <RegisterCard />} />
-        
+
         <Route path="/HomePosts" element={
           user ? (
             <>
@@ -37,7 +47,8 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
+        {/* Other routes remain unchanged */}
         <Route path="/VideoPosts" element={
           user ? (
             <>
@@ -46,7 +57,7 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
         <Route path="/ShopPosts" element={
           user ? (
             <>
@@ -55,7 +66,7 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
         <Route path="/GroupPosts" element={
           user ? (
             <>
@@ -64,7 +75,7 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
         <Route path="/GamePosts" element={
           user ? (
             <>
@@ -73,7 +84,7 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
         <Route path="/Notifications" element={
           user ? (
             <>
@@ -82,7 +93,7 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
         <Route path="/Settings" element={
           user ? (
             <>
@@ -91,7 +102,7 @@ const App = () => {
             </>
           ) : <Navigate to="/Login" />
         } />
-        
+
         <Route path="*" element={<Navigate to="/Login" />} />
       </Routes>
     </>

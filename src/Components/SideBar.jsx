@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Users, MessageCircle, ShoppingBag, Clock, Gamepad, Calendar, Home, Video, Bookmark, CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
 import profilePic from "../../Assets/dp.jpg"; // Your profile image
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 const menuItems = [
-  { id: 0, icon: <img src={profilePic} alt="Profile" className="w-10 h-10 rounded-full object-cover" />, label: "Jam Yousuf" },
+  { id: 0, icon: <img src={profilePic} alt="Profile" 
+  className="w-10 h-10 rounded-full object-cover" />,
+   label: "Jam Yousuf" },
   { id: 1, icon: <Users />, label: "Friends" },
   { id: 2, icon: <Users />, label: "Groups" },
   { id: 3, icon: <MessageCircle />, label: "Messenger" },
@@ -26,7 +30,10 @@ const extraItems = [
 
 const Sidebar = () => {
   const [showMore, setShowMore] = useState(false);
+  const {userDetails,fetchUserData}=useContext(AuthContext)
 
+
+  
   return (
     <div className="overflow-y-auto h-full"> {/* Ensures scrolling works */}
       <div className="sidebar-container h-full w-[80%] p-3 pr-1">

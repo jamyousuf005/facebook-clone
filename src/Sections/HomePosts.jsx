@@ -20,7 +20,7 @@ const HomePosts = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 ">
+    <div className="min-h-screen bg-gray-100">
       {/* Fixed NavBar at the top */}
       <div className="fixed top-0 left-0 w-full z-50 bg-white shadow">
         <NavBar />
@@ -33,11 +33,11 @@ const HomePosts = () => {
         </div>
       )}
 
-      {/* Main content container */}
-      <div className="flex pt-16 w-full ">
+      {/* Main content container - Adjusted padding top from pt-16 to pt-14 */}
+      <div className="flex pt-14 w-full">
         {/* Left Sidebar - Fixed */}
         <div className="w-[30%] bg-gray-100 hidden lg:block">
-          <div className="sticky top-16 h-[calc(100vh-64px)]  overflow-y-auto">
+          <div className="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">
             <Sidebar />
           </div>
         </div>
@@ -48,7 +48,7 @@ const HomePosts = () => {
         </div>
 
         {/* Right Sidebar - Fixed */}
-        <div className="hidden lg:block  lg:w-[30%] bg-gray-100 ">
+        <div className="hidden lg:block lg:w-[30%] bg-gray-100">
           <div className="sticky top-16 h-[calc(100vh-64px)]">
             <div className="p-4">
               <RightSideBar />

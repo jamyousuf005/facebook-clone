@@ -16,9 +16,11 @@ const Posts = () => {
     handleCommentChange,
     handleKeyPress
   } = useContext(DataContext);
+  
 
   return (
-    <div className='w-full md:w-[80%]'>
+    // Added mt-2 or mt-4 class to adjust the top margin and reduce the gap
+    <div className='w-full md:w-[80%] mt-2'>
       {friendsList.map((post) => {
         // Find the corresponding story for the post
         const story = stories.find((s) => s.name === post.name);
