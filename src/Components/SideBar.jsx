@@ -29,11 +29,13 @@ const Sidebar = () => {
   const menuItems = [
     { 
       id: 0, 
-      icon: 
+      icon: userDetails ? (
         <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg">
           {getInitials()}
         </div>
-      , 
+      ) : (
+        <img src="" alt="" className="w-10 h-10 rounded-full object-cover" />
+      ), 
       label: getFullName()
     },
     { id: 1, icon: <Users />, label: "Friends" },

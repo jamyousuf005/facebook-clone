@@ -34,7 +34,7 @@ const HomePosts = () => {
       )}
 
       {/* Main content container - Adjusted padding top from pt-16 to pt-14 */}
-      <div className="flex pt-14 w-full">
+      <div className="flex pt-1 w-full">
         {/* Left Sidebar - Fixed */}
         <div className="w-[30%] bg-gray-100 hidden lg:block">
           <div className="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">

@@ -100,7 +100,7 @@ const PostCard = () => {
   };
 
   return (
-    <div className='w-full bg-white p-3 rounded-lg md:w-[80%] overflow-hidden'>
+    <div className='w-full bg-white p-3 rounded-lg md:w-[80%] overflow-hidden shadow-xl'>
       <div className='relative'>
         <div className='flex gap-3 w-full'>
           <div className='w-12 h-10'>
