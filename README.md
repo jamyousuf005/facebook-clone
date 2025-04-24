@@ -3,4 +3,5 @@ Firebase used for Authentication
 Proper State Management and Component Based working
 React Rounter Dom and ContextApi
 Features like commment, like, post but no cloud used therefore not working but feature is implemented
-Just a simple UI project
+Just a simple UI project, you might wanna check out the Link i have provided in the description.
+
