@@ -1,7 +1,7 @@
 📘 Facebook Clone (ReactJS + Firebase + TailwindCSS)
 Welcome to MyFBWebApp – a simple UI project that mimics some core features of Facebook! Built using ReactJS, TailwindCSS, and Firebase Authentication, this clone demonstrates component-based architecture, proper state management, and routing, with a clean, modern look.
 
-🔗 Live Demo: myfbwebaap.vercel.app
+🔗 Live Demo: https://myfbwebaap.vercel.app/
 
 🚀 Features
 🔐 Firebase Authentication – Sign In/Sign Out functionality
